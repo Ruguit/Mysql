@@ -1,0 +1,28 @@
+查看所有的字符集：
+show character set;
+
+查看字符集的排序规则;
+show collation like 'GBK%';
+
+查看服务器的字符集;
+show variables like 'character_set_server';
+
+查看数据库的字符集
+show variables like 'character_set_database';
+
+修改服务器的字符集：
+my.ini -> [mysqld]组：
+character-set-server=字符集
+collation-server=排序规则
+
+创建数据库时，修改字符集：
+create databses database_name default charset set_name;
+
+使用alter修改字符集
+alter database database_name default charset set_name;
+
+查看表的详细信息;
+show table status from 库名 like'表名';
+
+查看版本信息：
+select version();
