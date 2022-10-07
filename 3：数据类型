@@ -1,0 +1,72 @@
+数值类型：
+1：整数类型 
+tinyint  1字节 smallint 2字节 mediumint 3字节 int 4字节 bigint 8字节
+2：浮点数类型 
+float 4字节 double 8字节
+3：定点数类型 
+decimal（整数位数，小数位数）
+
+查看MySql帮助文档的目录列表
+ help contents;
+ 
+ 使用help data types；查看所有的支持的数据类型，再次使用 help +（数据类型） 可以查看它的存储范围。
+ 
+ 
+ 
+ 日期与时间类
+ year  YYYY
+ date YYYY-MM-DD
+ time  HH:MM:SS
+ datetime YYYY-MM-DD  HH:MM:SS
+ timestamp  YYYY-MM-DD  HH:MM:SS
+ 
+ 
+ 字符串类型：
+ 存储较短的字符串
+ char()
+ varchar()
+ 
+ 存储较短的二进制字符串
+ binary()
+ varbinary()
+ 
+ 存储较大是二进制字符串
+ BLOB
+ 
+ 存储较大的文本字符串
+ TEXT
+ 
+ 存储单选项形式的数据。
+ ENUM： col_name ENUM('value1','value2'...)
+ 
+ 
+ 存储多选项形式的数据。
+ SET:col_name SET('value1','value2'...)
+ 
+ JSON类型的数据
+ 5.7.8版本开始
+ 可插入数或对象：数组：使用 ， 分隔 放在[]中  对象:是一组键值，使用 ， 分隔 放在{}中  数组与对象可以相互嵌套。
+ JSON类型需要写成字符串形式
+ 
+ 一般存储数据
+接下来我们向表中添加一些测试数据
+insert into dept VALUES(1,'部门1','{"deptName": "部门1", "deptId": "1", "deptLeaderId": "3"}');
+insert into dept VALUES(2,'部门2','{"deptName": "部门2", "deptId": "2", "deptLeaderId": "4"}');
+insert into dept VALUES(3,'部门3','{"deptName": "部门3", "deptId": "3", "deptLeaderId": "5"}');
+insert into dept VALUES(4,'部门4','{"deptName": "部门4", "deptId": "4", "deptLeaderId": "5"}');
+insert into dept VALUES(5,'部门5','{"deptName": "部门5", "deptId": "5", "deptLeaderId": "5"}');
+
+一般基础查询操作
+1、使用 json字段名->’$.json属性’ 进行查询条件
+举个例子：如果我想查询deptLeader=张五的数据，那么sql语句如下：
+
+SELECT * from dept WHERE json_value->'$.deptLeaderId'='5';
+
+2、如果涉及多个条件也是支持的
+比如我想查dept为“部门3”和deptLeaderId=5的数据，sql如下：
+SELECT * from dept WHERE json_value->'$.deptLeaderId'='5' and dept='部门3';
+查询和关系型数据库查询一致。
+
+3、如果涉及json中多个字段关系查询
+比如我想查询json格式中deptLeader=张五和deptId=5的数据
+SELECT * from dept WHERE json_value->'$.deptLeaderId'='5' and json_value->'$.deptId'='5';
