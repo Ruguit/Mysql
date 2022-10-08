@@ -1,0 +1,24 @@
+非空约束：not null
+唯一约束：unique
+主键约束：primary key
+检查约束：保列中的值满足某一条件  check
+默认约束：default 
+外键约束：foreign key 
+自动增长：Auto_increment 
+
+外键约束的语法：
+添加外键
+create table name(
+    字段 类型 constraint 外键名 foreign key 外键字段名 references 主表；
+)
+alter table 表名 add constraint 外键名 foreign key 外键字段名 references 主表；
+删除外键:
+alter tabel 表名 drop foreign key 外键名;
+
+外键删除与更新的行为：
+添加外键的语句后面加on update 行为 on delete 行为;
+NO ACTION 
+RESTRICT
+CASCADE
+SET NULL
+SET DEFAULT
