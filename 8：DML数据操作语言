@@ -1,0 +1,13 @@
+指定添加：
+Insert into 表名 （字段1，字段2）values （值1 ，值2）；
+对所有字段添加：
+Insert into 表名 values（值1，值2），（值1 ，值2）；
+修改数据：
+Update 表名 set 字段名1=值1 ，字段名2=值2；
+删除数据：
+Delete from 表名； 不会释放内存空间，只是物理意义上的删除
+truncate table table_name；会释放内存空间；
+使用其他表的数据插入到一条表中间：
+insert into table_name (字段集合) select (字段集合)from table_name；
+创建一个表的备份：
+create table new_name select * from table_name;
