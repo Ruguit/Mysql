@@ -1,0 +1,33 @@
+查询用户：
+Use  mysql;
+Select * from user;
+
+创建用户：
+Create user '用户名'@'主机名'identified_by'密码'；
+主机名：%为任意的主机；
+
+修改用户密码：
+Alter user ’用户名‘@’主机名‘ identified with mysql_native_password by '新密码';
+
+删除用户：
+Drop user  ’用户名‘@’主机名‘;
+
+
+权限控制：
+Show grants for '用户'@’主机名‘;
+授予权限：
+Grant 权限列表 on 库名的表名 to '用户'@’主机名‘;
+撤销权限：
+revoke 权限列表 on 库名的表名 to '用户'@’主机名‘;
+
+权限：
+ALL.ALL PRIVILEGES所有权限
+SELECT
+INSERT
+UPDATE
+DELETE
+
+ALTER
+
+DROP
+CREATE
