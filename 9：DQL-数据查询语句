@@ -1,0 +1,42 @@
+Select=====字段
+From======表名
+Where=====条件
+Group by===分组字段列表
+Having =====分组后条件列表
+Order by =====排序字段列表
+Limit========分页参数
+
+DQL：编写顺序：select->where->group by -> having->order by ->limit
+	执行的顺序：from->where->group by ->having->select->order by ->limit
+
+
+
+查询多个字段：
+Select 字段1 ，字段2 ……from 表名；
+Select * from 表名；
+设置别名：
+Select 字段 as 别名，字段 as 别名 from 表名；
+去重复查询；
+Select distinct 字段列表 from 表名；
+
+条件查询；where
+Select 字段 from 表名 where  条件列表   /    字段名like'- 或%'   /    between _and_（之间）;
+Select 聚合函数（字段列表）from 表名；
+聚合函数：count 统计数量  max 最大值 min 最小值  avg 平均值  sum 求和；
+条件包括：
+><=等比较运算符，in(多个值)多个值的多选一，is null 判断是null吗？，逻辑运算符
+
+
+分组查询；
+Select 字段 from 表名 【where 条件】group by 分组出来的字段名【having 分组后过滤的条件】；
+
+
+
+排序查询：
+Select 字段 from 表名 order by 字段1 排序方式1，字段2  排序方式2 ；
+ASC 升序；desc ：降序 
+字段如果相同，就执行后面字段的排序方式；
+
+分页查询：
+Select 字段 from 表名 limit  起始索引 ，查询记录数；
+起始索引：（查询页码-1）*当前页面的查询记录数；
