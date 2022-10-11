@@ -1,0 +1,105 @@
+字符串函数：
+-- 字符串拼接函数
+select concat('1','2');
+
+-- 转小写
+select lower('AS1');
+
+-- 转大写
+select upper('as1');
+
+-- 左填充 lpad(str,n,pad) 用字符串pad对str的左边填充，达到n个字符串的长度
+select lpad('str',5,'1');
+
+-- 右填充 rpad(str,n,pad) 用字符串pad对str的右边填充，达到n个字符串的长度
+select rpad('str',5,'1');
+
+-- 去掉字符串头部与尾部的空格
+select trim(' str ');
+
+-- 返回指定长度的字符串 substring(str,index,num) 返回字符串str从index开始的num长度的字符串
+select substring('123456789',1,3);
+
+数值函数：
+-- 向上取整
+select ceil(1.2); -- 2
+-- 向下取整
+select floor(1.2); -- 1
+-- 返回 mod(x,y) x/y的模
+select mod(10,3); -- 1
+-- 返回0-1内的随机数
+select rand();
+-- round(x,y) 求参数x四舍五入的值 保留y位小数
+select round(1.345,2); -- 1.35
+
+
+日期函数：
+-- 返回当前日期
+select curdate();
+
+-- 返回当前时间
+select curtime();
+
+-- 返回当前日期与时间
+select now();
+
+-- 获取指定date的年份
+select year(curdate());
+
+-- 获取指定date的月份
+select month(curdate());
+
+-- 获取指定date的日期
+select day(curdate());
+
+-- 返回两个时间之间的间隔天数  值:前面一个减去后面一个
+select datediff(curdate(),date_add(curdate(),interval 1 day )); -- -1
+
+-- DATE_ADD(date,INTERVAL expr unit); 返回指定时间间隔后的时间
+参数：
+
+date：一个时间类型的字符。
+
+INTERVAL：固定的标志。
+
+expr：表示数量，如果为正则为加上，如果为负则为减去。
+
+unit：表示加上或减去的时间类型，比如年，月，日，周等。可参考下面的表格。
+
+Type值	含义
+MICROSECOND	微妙
+SECOND	秒
+MINUTE	分钟
+HOUR	小时
+DAY	天
+WEEK	周
+MONTH	月
+QUARTER	季度
+YEAR	年
+SECOND_MICROSECOND	秒_微妙
+MINUTE_MICROSECOND	分钟_微妙
+MINUTE_SECOND	分钟_秒
+HOUR_MICROSECOND	小时_微妙
+DAY_MICROSECOND	天_微妙
+DAY_SECOND	天_秒
+HOUR_MINUTE	小时_分钟
+DAY_MINUTE	天_分钟
+DAY_HOUR	天_小时
+YEAR_MONTH	年_月
+select date_add(curdate(),interval 1 day ); -- 2022-10-12
+
+
+流程函数
+-- if(value,t,f) 如果value的结果位true 返回t 否则返回f
+select if(1!=1,2,3);
+
+-- ifnull(v1,v2); 如果v1不为空 返回v1 为空返回v2
+select ifnull('1',2);
+
+-- case when [value1] then [res1] ... else [default] end
+-- 如果value1为true 返回res1 以此类推 如果都不满足就返回default  类似于java里面的switch()函数
+select (case when 1!=1 then 1 when 1=1 then 2 else 3 end );
+
+-- case [expr] when [value1] then [res1] ... else [default] end
+-- 如果expr的值等于value1 返回res1 以此类推 如果都不满足就返回default
+select (case 1+1 when 2 then 'true'  else 'false' end );
