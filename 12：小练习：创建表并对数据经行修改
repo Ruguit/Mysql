@@ -1,0 +1,31 @@
+ show databases;
+ use db_test;
+show tables;
+create table tb_worker(
+    id int auto_increment primary key ,
+    name varchar(30),
+    sex varchar(10),
+    hobby set('basketball','football','volleyball'),
+    score decimal(2,1),
+    mobile int,
+    intro varchar(32),
+    entry_time date
+);
+insert into tb_worker(id, name, sex, hobby, score, mobile, intro, entry_time)
+VALUES (1,'小赵','m','basketball',9.2,1389991111,null,'2009-5-8');
+insert into tb_worker
+VALUES (2,'小钱','m','basketball,volleyball',9.1,1389992222,null,'2009-6-8');
+insert into tb_worker
+values(3,'小孙','w','football',9.1,1389993333,null,'2015-9-2'),
+        (4,'小李','m','basketball,football',9.2,1389994444,null,'2011-5-3'),
+       (5,'小周','w','volleyball',9.0,1389995555,null,'2017-1-9'),
+       (6,'小吴','m','football,volleyball',9.3,1389996666,null,'2014-7-7');
+select * from tb_worker;
+update tb_worker set hobby='football' where name='小吴';
+update tb_worker set score=score+0.5 where id <4;
+delete from tb_worker where sex='w';
+select * from tb_worker;
+select * from tb_worker where score>9.3 and hobby in('football');
+select * from tb_worker order by id desc ;
+select * from tb_worker where hobby='football' limit 1;
+select * from tb_worker where id in(1,4,12);
