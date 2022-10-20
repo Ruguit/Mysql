@@ -1,0 +1,13 @@
+内连接查询语法：
+隐式内连接：select 字段 from 表1 ，表2 where 条件
+（该写法不好）实际查询数据条数是表1 与表2 的字段之积的条数大大的浪费了内存资源。
+显示内连接（普通内连接）：
+select 字段 from 表1 inner join 表2 on 条件  inner可以省略
+
+自链接查询;
+select 字段列表 from 表1 as 表1别名 inner join 表2 as 表2别名 on 条件
+
+外连接查询：
+以from后的第一个表为基表：
+左连接查询 select 字段列表 from 表1 left [outer] join 表2 on 条件
+右连接查询 select 字段列表 from 表1 right [outer] join 表2 on 条件
