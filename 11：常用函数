@@ -104,4 +104,4 @@ select (case when 1!=1 then 1 when 1=1 then 2 else 3 end );
 -- 如果expr的值等于value1 返回res1 以此类推 如果都不满足就返回default
 select (case 1+1 when 2 then 'true'  else 'false' end );
 
-聚合函数：count 统计数量  max 最大值 min 最小值  avg 平均值  sum 求和；
+聚合函数：count 统计数量  max 最大值 min 最小值  avg 平均值  sum 求和，group_concat(字段)拼接字段内容
