@@ -1,0 +1,41 @@
+（一）from子句中的子查询：
+select * from (select * from table_name) as table_names where condition;
+
+（二）where语句中的子查询：
+1：使用IN关键字的子查询：指定范围内多选一
+select * from table_name1 where col_name1 IN (select col_name2 from table_name2 where condition);
+2：使用NOT IN关键字的子查询：不在指定范围内
+select * from table_name1 where col_name1 NOT IN (select col_name2 from table_name2 where condition);
+
+3：使用any与some的子查询:只要满足子查询中任意一个，就成立
+select * from table_name1 where col_name1 ANY|SOME (select col_name2 from table_name2 where condition);
+
+4：使用ALL的子查询:满足子查询中所有才成立
+select * from table_name1 where col_name1 ALL (select col_name2 from table_name2 where condition);
+
+
+5：使用EXISTS的子查询:用于判断子查询结果：
+子查询至少有一条结果时，exists的结果时true 主查询语句才执行，反之为false 主语句不执行 
+select * from table_name1 where EXISTS(select col_name2 from table_name2 where condition);
+
+4：使用条件判断符的子查询:满足子查询条件才成立
+select * from table_name1 where col_name1 条件判断符 (select col_name2 from table_name2 where condition);
+
+（三）联合查询：合并查询结果：
+select * from table_name1
+union | union all 
+select * from table_name2;
+
+union :结果不重复
+union all :查询保留所有记录，不去重复
+
+注意：两张表的查询字段数量要相同;
+所以对以下查询有特别的解决方法：
+select 字段1 ，字段2 ， 字段3 from table_name1
+union | union all 
+select 字段1 ，字段2  from table_name2;
+
+解决方法：使用null代替字段 或使用''代替字段 
+select 字段1 ，字段2 ， 字段3 from table_name1
+union | union all 
+select 字段1 ，字段2 ，null|'' from table_name2;
