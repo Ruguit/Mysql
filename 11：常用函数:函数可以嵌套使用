@@ -1,4 +1,26 @@
 字符串函数：
+-- 重复生成字符串
+select repeat(str,重复次数);
+ 
+ --获取字符串开始位置的函数
+ select locate(str，查找字符串)
+ 
+ --反转字符串
+ select reverse(str);
+
+-- 获取指定长度的字符串
+left(str,x) 从左边获取x个字符串
+right(str,x);从右边获取x个字符串
+
+--替换函数
+select insert(str,x,y,instr); 将字符串str从x位置开始，把y个字符串长度的字串替换为instr
+
+--返回字符串长度 汉字占用3个字节 英文于数字占用1个字节
+select length('str')
+
+--返回字符个数
+select char_length('str')
+
 -- 字符串拼接函数
 select concat('1','2');
 
@@ -19,6 +41,8 @@ select trim(' str ');
 
 -- 返回指定长度的字符串 substring(str,index,num) 返回字符串str从index开始的num长度的字符串
 select substring('123456789',1,3);
+SUBSTRING_INDEX ('待处理字符串', '分隔符', 'count') 
+使用 SUBSTRING_INDEX 可以截取到第 count 个分隔符的位置之前的子字符串。
 
 数值函数：
 -- 向上取整
@@ -31,6 +55,10 @@ select mod(10,3); -- 1
 select rand();
 -- round(x,y) 求参数x四舍五入的值 保留y位小数
 select round(1.345,2); -- 1.35
+--求绝对值函数
+select abs(-1);
+-- 截取小数位数函数
+select truncate（小数，小数位数）
 
 
 日期函数：
