@@ -1,0 +1,51 @@
+-- 算术运算符 +-*/% 使用与select 语句中 可以操作数值或数值类型的字段
+select 2+2; -- 4
+-- 在除法与取余运算中，如果余数为0 返回结果为NULL
+select 2/0,2%0; -- NULL NULL
+
+
+-- 比较运算符
+-- =, <, >, <=, >=, !=, between and, in, is null, like, regexp(匹配正则表达式)
+-- regexp的使用
+-- 1: ^ 匹配字符串开始的部分 ^b匹配以b开头的字符串 匹配成功返回1 然则返回0
+select 'abc'regexp '^b';-- 0
+select 'bbc'regexp '^b';-- 1
+
+-- 2: $ 匹配字符串结束的部分 c$匹配以c结束的字符串 匹配成功返回1 然则返回0
+select 'abb' regexp 'c$';-- 0
+select 'abc' regexp 'c$';-- 1
+
+-- 3: . 匹配换行符以外的任意字符
+select 'bit' regexp 'b.t';-- 1
+select 'b\nt' regexp 'b.t';-- 0
+
+-- 4: [...] 匹配括号中的任意一个字符
+select 'a' regexp '[a-z]';-- 1
+select 'abc' regexp '[a-z]';-- 1
+select '1' regexp '[0-9]';-- 1
+
+-- 5: [^...] 匹配括号中未包含的任意一个字符
+select 'a' regexp '[^a-z]';-- 0
+select '0' regexp '[^a-z]';-- 1
+select 'abc' regexp '[^a-z]';-- 0
+select '1' regexp '[0-9]';-- 0
+
+-- 6: p1|p2 匹配p1或p2 k|cat 匹配 k或cat （k|c）at就是匹配 kat或cat
+select 'cat' regexp 'k|cat';-- 1
+select 'kat' regexp '(k|c)at';-- 1
+
+-- 7: * 匹配前面的0个或多个字符 eg： ao*能匹配a或aoooo等 [0-9]*能匹配任意数量的字符
+select '12312' regexp '[0-9]*';-- 1
+
+-- 8: + 匹配前面的1个或多个字符 eg： ao*能匹配ao或aoooo
+select 'a' regexp 'ao+';-- 0
+select 'aoo' regexp 'ao+';-- 1
+
+-- 9: {n} 匹配前面的字符至少n次
+-- 10: {n,m} 匹配前面的字符至少n次 至多m次
+
+
+-- 逻辑运算 && || ! xor
+
+-- 位运算符
+-- &位与 |位或 ^位异或 <<位左移 >>位右移 ~位取反
