@@ -133,3 +133,14 @@ select (case when 1!=1 then 1 when 1=1 then 2 else 3 end );
 select (case 1+1 when 2 then 'true'  else 'false' end );
 
 聚合函数：count 统计数量  max 最大值 min 最小值  avg 平均值  sum 求和，group_concat(字段)拼接字段内容
+
+返回数据库信息
+select database(),version(),user(); -- 返回数据库的名字 版本信息 用户信息
+
+-- 加密函数
+select md5('1');
+-- c4ca4238a0b923820dcc509a6f75849b
+select password('123');
+
+转换不同进制的函数
+IP地址与数字相互转换的函数
