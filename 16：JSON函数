@@ -1,0 +1,29 @@
+-- 创建JSON值的函数
+-- 创建JSON数组 json_array()
+select json_array(1,'abc',null,true,curtime());-- [1, "abc", null, true, "20:10:17.000000"]
+-- 创建JSON类型的对象
+select json_object('id',8,'name','tom');-- {"id": 8, "name": "tom"}
+
+-- 修改JSON数据
+-- json_array_append() 将值附加到指定位置的结尾
+set @j='["a",["b","c"],"d"]';
+select json_array_append(@j,'$[1]',1);-- 索引1的位置添加1 json类型的数据一般是从索引0开始
+-- ["a", ["b", "c", 1], "d"]
+
+-- json_set() 插入或更新数据
+set @a='{"a":1,"b":[2,3]}';
+select json_set(@a,'$.a',10,'$.c','[true,false]');-- {"a": 10, "b": [2, 3], "c": "[true,false]"}
+-- 修改的数据类型要相同，如果$定位不存在 会自动添加
+
+-- 删除数据的函数
+-- json_remove()
+set @b='["a",["b","c"],"d"]',@c='{"a":1,"b":[2,3]}';
+select json_remove(@b,'$[0]');-- [["b", "c"], "d"]
+select json_remove(@b,'$[1][1]');-- ["a", ["b"], "d"]
+select json_remove(@c,'$.a');-- {"b": [2, 3]}
+
+-- 返回json文档中数据与路径的函数 json_extract()
+set @b='["a",["b","c"],"d"]';
+select json_extract(@b,'$[1]');-- ["b", "c"]
+select json_search(@b,'one','d');-- "$[2]" 返回第一次匹配的路径
+select json_search(@b,'all','d');-- "$[2]" 返回所有匹配的路径
