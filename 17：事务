@@ -1,0 +1,18 @@
+事务是一组操作的集合，要么全部执行成功，要么全部失败。
+
+事务操作：
+查看/设置事务提交方式： SELECT @@autocommit; set @@autocommit=0/1;
+提交事务：commit
+回滚事务：rollback
+开启事务：start transaction 或 begin
+
+事务四大特性：原子性，一致性，隔离性，持久性
+
+并发事务问题：
+脏读 不可重复读 幻读
+
+设置事务隔离级别 解决 事务并发问题
+查看事务隔离级别;SELECT @@TRANSACTION_ISOLATION
+
+设置事务隔离级别：
+SET [SESSION|GLOBAL] TRANSACTION ISOLATION LEVEL {事务级别}
